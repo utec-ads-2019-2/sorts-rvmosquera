@@ -18,10 +18,15 @@ void Tester::sorts(int *array, size_t size) {
     Sort* sort;
     int temp[size];
 
-    for (int i = BUBBLE; i <= COUNTING; i++) {
+    for (int i = BUBBLE; i <= MERGE; i++) {
+
+        if ( i == RADIX)
+            continue;
         copy(array, array + size, temp);
         sort = getSort(static_cast<Algorithm>(i), temp, size);
         sort->execute();
+        //for (int i=0; i < size ; i++)
+        //    cout << temp[i] << " ";
         ASSERT(is_sorted(temp, temp + size), "The " + sort->name() + " is not ordering all the elements");
     }
 }
