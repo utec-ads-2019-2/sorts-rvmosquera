@@ -20,8 +20,6 @@ void Tester::sorts(int *array, size_t size) {
 
     for (int i = BUBBLE; i <= MERGE; i++) {
 
-        if ( i == RADIX)
-            continue;
         copy(array, array + size, temp);
         sort = getSort(static_cast<Algorithm>(i), temp, size);
         sort->execute();

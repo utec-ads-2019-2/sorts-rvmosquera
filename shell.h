@@ -9,14 +9,16 @@ class ShellSort : public Sort {
 
         void execute() {
 
-           /* for(int j=0; j < size ; j++) {
-                for (int i = gap; i < n; i++) {
-                    auto temp = a[i];
-                    for (j = i; j >= gap and a[j - gap] > temp; j -= gap)
-                        a[j] = a[j - gap]
-                    a[j] = temp
+            for (int gap = size/2; gap > 0; gap /= 2)
+                for (int i = gap; i < size; i += 1) {
+                    int temp = elements[i];
+
+                    int j;
+                    for (j = i; j >= gap && elements[j - gap] > temp; j -= gap)
+                        elements[j] = elements[j - gap];
+
+                    elements[j] = temp;
                 }
-            }*/
         }
 
         inline string name() { return "ShellSort"; }

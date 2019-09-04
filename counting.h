@@ -24,13 +24,6 @@ public:
             if ( element > mayor)
                 mayor = element;
 
-            /*using map
-             * auto it = vectorCount.find(element);
-            if (it != vectorCount.end())
-                vectorCount[element]++;
-            else
-                vectorCount.insert({element, 1});
-            */
         }
 
         int countLen = mayor - menor + 1;
@@ -62,18 +55,25 @@ public:
             }
         }
 
-        /*int k=0;
-        for(int i=menor ; i <= mayor ; i++) {
-            auto it = vectorCount.find(i);
+    }
 
-            if ( it == vectorCount.end() )
-                continue;
+    static void sort(int list[], int n, int exp) {
+        int output[n];
+        int count[10] = {0};
 
-            for(int j=k; j < k + vectorCount[i] ; j++) {
-                elements[j] = i;
-            }
-            k = k + vectorCount[i];
-        }*/
+        for (int i = 0; i < n; i++)
+            count[(list[i] / exp) % 10]++;
+
+        for (int i = 1; i < 10; i++)
+            count[i] += count[i - 1];
+
+        for (int i = n - 1; i >= 0; i--) {
+            output[count[(list[i] / exp) % 10] - 1] = list[i];
+            count[(list[i] / exp) % 10]--;
+        }
+
+        for (int i = 0; i < n; i++)
+            list[i] = output[i];
     }
 
     inline string name() { return "CountingSort"; }
